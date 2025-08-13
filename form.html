@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Column Contact Page</title>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ96j7mJAAf9sJ/2K8XjA9rXk9k+A1L3y/6k0v6h6w5t8p2i3f2f/5yv5B+k8p" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-color: #5d25e7;
+            --secondary-color: #6C63FF;
+            --form-background: rgba(255, 255, 255, 0.2);
+            --info-background: rgba(255, 255, 255, 0.1);
+            --text-color: #1a202c;
+            --light-text: #f0f2f5;
+            --error-color: #e53e3e;
+            --success-color: #38a169;
+            --border-color: rgba(255, 255, 255, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: var(--light-text);
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 15px 30px -5px var(--shadow-color), 0 8px 15px -5px var(--shadow-color);
+            backdrop-filter: blur(10px);
+            background: var(--info-background);
+        }
+        
+        .contact-info {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-details-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details-item i {
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            color: var(--primary-color);
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .contact-details-item span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .form-wrapper {
+            flex: 1.2;
+            padding: 2.5rem;
+            background: var(--form-background);
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: float 2s ease-in-out infinite; 
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #ddd;
+            display: none; /* Hide labels for this design */
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper:focus-within {
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .input-wrapper i {
+            color: #ffffff;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+            color: #ffffff;
+            outline: none;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+        
+        /* New styles to create the double box effect for the textarea */
+        .textarea-wrapper {
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem; /* Added padding for the outer box */
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .textarea-wrapper:focus-within {
+            border-color: var(--primary-color);
+        }
+        .textarea-wrapper i {
+            margin-top: 0;
+        }
+        
+        textarea {
+            resize: none;
+            min-height: 100px;
+            padding: 0.75rem; /* Padding for the inner box */
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Border for the inner box */
+            border-radius: 0.5rem;
+            background-color: transparent;
+            width: calc(100% - 1.25rem - 1rem); /* Adjust width to account for padding and icon */
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 400;
+        }
+        
+        .success-message {
+            color: var(--success-color);
+            font-size: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 700;
+            display: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background-color: rgba(56, 161, 105, 0.2);
+            border: 1px solid var(--success-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(45deg, #7F00FF, #E100FF);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(127, 0, 255, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(127, 0, 255, 0.3);
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .contact-info {
+                padding: 1.5rem;
+            }
+            .form-wrapper {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>We are always eager to connect with you. Please reach out to us with any questions or ideas, and let's build something great together.</p>
+            
+            <div class="contact-details">
+                <div class="contact-details-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Main Street, Bangalore, Karnataka</span>
+                </div>
+                <div class="contact-details-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="contact-details-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@example.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <h3>Get in Touch</h3>
+            <form id="contactForm" novalidate>
+
+                <!-- Name Field -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="Full Name">
+                    </div>
+                    <div id="name-error" class="error-message">Name is required.</div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="E-mail Id">
+                    </div>
+                    <div id="email-error" class="error-message">A valid email is required.</div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <div class="textarea-wrapper">
+                        <i class="fas fa-comment-dots"></i>
+                        <textarea id="message" name="message" placeholder="Type your Message..."></textarea>
+                    </div>
+                    <div id="message-error" class="error-message">Message cannot be empty.</div>
+                </div>
+
+                <button type="submit">Submit</button>
+                <div id="success-message" class="success-message">Thank you! Your message has been sent.</div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get references to all the form elements
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const messageError = document.getElementById('message-error');
+        const successMessage = document.getElementById('success-message');
+
+        // Add a submit event listener to the form
+        contactForm.addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Clear previous error messages and success message
+            clearErrors();
+            successMessage.style.display = 'none';
+
+            // Validate the form and check if it's valid
+            if (validateForm()) {
+                // If validation passes, show the success message
+                console.log('Form submitted successfully!');
+                successMessage.style.display = 'block';
+
+                // Reset the form fields after a successful submission
+                contactForm.reset();
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Simple regular expression for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Validate Name field
+            if (nameInput.value.trim() === '') {
+                displayError(nameError, 'Name is required.');
+                isValid = false;
+            }
+
+            // Validate Email field
+            if (emailInput.value.trim() === '') {
+                displayError(emailError, 'Email is required.');
+                isValid = false;
+            } else if (!emailRegex.test(emailInput.value.trim())) {
+                displayError(emailError, 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Validate Message field
+            if (messageInput.value.trim() === '') {
+                displayError(messageError, 'Message cannot be empty.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Helper function to display an error message
+        function displayError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        // Helper function to clear all error messages
+        function clearErrors() {
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            messageError.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
